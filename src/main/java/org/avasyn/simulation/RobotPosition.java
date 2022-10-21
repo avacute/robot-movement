@@ -37,6 +37,7 @@ public class RobotPosition {
     }
 
     public void stepRobotPosition(int x, int y) {
+
         // add new step move required in x-axis to current x-position
         this.xCoordinate += x;
         // add new step move required in y-axis to current y-position
@@ -46,7 +47,7 @@ public class RobotPosition {
     public RobotPosition changeRobotPosition() throws ToyRobotMovementException {
 
         if (this.direction == null)
-            throw new ToyRobotMovementException("Invalid robot direction");
+            throw new ToyRobotMovementException("Robot not placed on Table");
 
         RobotPosition newPosition  = new RobotPosition(this);
         switch (this.direction) {

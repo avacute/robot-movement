@@ -11,7 +11,7 @@ public class SquareTable implements Table {
     }
     public boolean isValidPosition(RobotPosition robotPosition) {
         if(rows != columns) {
-            System.out.println("Not a Square Table");
+            System.out.println("Not a square table");
             return false;
         }
 

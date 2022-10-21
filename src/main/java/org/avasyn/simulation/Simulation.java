@@ -14,7 +14,7 @@ public class Simulation {
         this.toyRobot = toyRobot;
     }
 
-    public boolean placeToyRobot(RobotPosition robotPosition) throws ToyRobotMovementException {
+    public String placeToyRobot(RobotPosition robotPosition) throws ToyRobotMovementException {
 
         if (squareTable == null)
             throw new ToyRobotMovementException("Invalid squareBoard object");
@@ -27,15 +27,17 @@ public class Simulation {
 
         // validate the position
         if (!squareTable.isValidPosition(robotPosition))
-            return false;
+            return "Invalid position";
 
         // if position is valid then assign values to fields
         toyRobot.setPosition(robotPosition);
-        return true;
+        return "Robot placed on Table";
     }
 
 
     public String robotMovement(String inputString) throws ToyRobotMovementException {
+
+
         String[] args = inputString.split(" ");
 
         // validate command
@@ -55,13 +57,13 @@ public class Simulation {
         String[] params;
         int x = 0;
         int y = 0;
-        Direction commandDirection = null;
+        Direction direction = null;
         if (command == Command.PLACE) {
             params = args[1].split(",");
             try {
                 x = Integer.parseInt(params[0]);
                 y = Integer.parseInt(params[1]);
-                commandDirection = Direction.valueOf(params[2]);
+                direction = Direction.valueOf(params[2]);
             } catch (Exception e) {
                 throw new ToyRobotMovementException("Invalid command");
             }
@@ -71,7 +73,7 @@ public class Simulation {
 
         switch (command) {
             case PLACE:
-                output = String.valueOf(placeToyRobot(new RobotPosition(x, y, commandDirection)));
+                output = String.valueOf(placeToyRobot(new RobotPosition(x, y, direction)));
                 break;
             case MOVE:
                 RobotPosition newPosition = toyRobot.getPosition().changeRobotPosition();

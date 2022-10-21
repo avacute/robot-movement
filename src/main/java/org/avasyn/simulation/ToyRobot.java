@@ -1,6 +1,7 @@
 package org.avasyn.simulation;
 
 
+import org.avasyn.exception.ToyRobotMovementException;
 import org.avasyn.simulation.contract.Robot;
 
 public class ToyRobot implements Robot {
@@ -15,16 +16,16 @@ public class ToyRobot implements Robot {
 
     public String setPosition(RobotPosition robotPosition) {
         if (robotPosition == null)
-            return "Can't set Robot Position; Invalid Position";
+            return "Can't set robot position; invalid position";
 
         this.robotPosition = robotPosition;
-        return "Robot is Positioned";
+        return "Robot is positioned";
     }
 
 
     public String move(RobotPosition newPosition) {
         if (newPosition == null)
-            return "Can't move Robot; Invalid Position";;
+            return "Can't move Robot; robot not on table";
 
         // change position
         this.robotPosition = newPosition;
@@ -32,13 +33,15 @@ public class ToyRobot implements Robot {
     }
 
     public RobotPosition getPosition() {
+        if (robotPosition == null)
+            return new RobotPosition(0,0,null);
         return this.robotPosition;
     }
 
 
     public String rotateLeft() {
-        if (this.robotPosition.getDirection()== null)
-            return "Can't Rotate Robot; Invalid Direction";
+        if (this.robotPosition == null)
+            return "Can't rotate robot; robot not on table";
 
         this.robotPosition.setDirection(this.robotPosition.getDirection().leftDirection());
         return "Robot turned Left: " + robotPosition.getDirection();
@@ -46,8 +49,8 @@ public class ToyRobot implements Robot {
 
 
     public String rotateRight() {
-        if (this.robotPosition.getDirection() == null)
-            return "Can't Rotate Robot; Invalid Direction";
+        if (this.robotPosition == null)
+            return "Can't rotate robot; robot not on table";
 
         this.robotPosition.setDirection(this.robotPosition.getDirection().rightDirection());
         return "Robot turned Right: " + robotPosition.getDirection();
