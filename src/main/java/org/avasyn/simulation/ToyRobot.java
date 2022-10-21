@@ -1,7 +1,5 @@
 package org.avasyn.simulation;
 
-
-import org.avasyn.exception.ToyRobotMovementException;
 import org.avasyn.simulation.contract.Robot;
 
 public class ToyRobot implements Robot {
