@@ -1,5 +1,6 @@
 package org.avasyn.simulation;
 
+import org.avasyn.util.Direction;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
