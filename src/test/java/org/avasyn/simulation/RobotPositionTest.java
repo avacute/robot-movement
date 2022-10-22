@@ -7,9 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class RobotPositionTest {
-
-    @Test
-   public void changeRobotPosition() throws RobotMovementException {
+     @Test
+     public void changeRobotPosition() throws RobotMovementException {
         RobotPosition robotPosition = new RobotPosition(5, 0, CardinalDirection.WEST);
 
         RobotPosition newPosition = robotPosition.changeRobotPosition();

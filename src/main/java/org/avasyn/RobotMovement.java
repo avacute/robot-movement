@@ -17,8 +17,8 @@ public class RobotMovement {
     }
     private void setTable(){
         //output usage instruction to console
-        System.out.println("Enter command in of the format Below");
-        System.out.println("'PLACE X,Y,NORTH|SOUTH|EAST|WEST', MOVE, LEFT, RIGHT, REPORT or EXIT");
+        System.out.println("Enter command in the format Below");
+        System.out.println("'PLACE X,Y,[NORTH|SOUTH|EAST|WEST]', EXIT, MOVE, RIGHT, LEFT or REPORT");
     }
     private void startRobot() {
         Scanner inputPane = new Scanner(System.in);
