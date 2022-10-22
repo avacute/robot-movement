@@ -3,47 +3,47 @@ package org.avasyn.util;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum Direction {
+public enum CardinalDirection {
 
     NORTH(0),
     EAST(1),
     SOUTH(2),
     WEST(3);
 
-    private static Map<Integer, Direction> directionMap = new HashMap<Integer, Direction>();
+    private static Map<Integer, CardinalDirection> directionMap = new HashMap<Integer, CardinalDirection>();
     private int directionIndex;
 
     static {
-        for (Direction directionEnum : Direction.values()) {
-            directionMap.put(directionEnum.directionIndex, directionEnum);
+        for (CardinalDirection cardinalDirectionEnum : CardinalDirection.values()) {
+            directionMap.put(cardinalDirectionEnum.directionIndex, cardinalDirectionEnum);
         }
     }
 
 
-    private Direction(int direction) {
+    private CardinalDirection(int direction) {
         this.directionIndex = direction;
     }
 
-    public static Direction valueOf(int directionNum) {
+    public static CardinalDirection valueOf(int directionNum) {
         return directionMap.get(directionNum);
     }
 
     // returns the direction on the left of the current one
-    public Direction leftDirection() {
+    public CardinalDirection leftDirection() {
         return rotate(-1);
     }
 
 
     // returns the direction on the right of the current one
-    public Direction rightDirection() {
+    public CardinalDirection rightDirection() {
         return rotate(1);
     }
 
-    private Direction rotate(int turn) {
+    private CardinalDirection rotate(int turn) {
 
         int newDirectionIndex = (this.directionIndex + turn) < 0 ? directionMap.size() - 1 :
                 (this.directionIndex + turn) % directionMap.size();
 
-        return Direction.valueOf(newDirectionIndex);
+        return CardinalDirection.valueOf(newDirectionIndex);
     }
 }

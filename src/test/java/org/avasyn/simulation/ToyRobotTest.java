@@ -1,7 +1,7 @@
 package org.avasyn.simulation;
 
-import org.avasyn.exception.ToyRobotMovementException;
-import org.avasyn.util.Direction;
+import org.avasyn.exception.RobotMovementException;
+import org.avasyn.util.CardinalDirection;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -9,31 +9,31 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ToyRobotTest {
     @Test
-    public void testRobotMovement() throws ToyRobotMovementException{
+    public void testRobotMovement() throws RobotMovementException {
 
-        ToyRobot toyRobot = new ToyRobot(new RobotPosition(0, 0, Direction.NORTH));
+        ToyRobot toyRobot = new ToyRobot(new RobotPosition(0, 0, CardinalDirection.NORTH));
         assertEquals(0, toyRobot.getPosition().getXCoordinate());
         assertEquals(0, toyRobot.getPosition().getYCoordinate());
-        assertEquals(Direction.NORTH, toyRobot.getPosition().getDirection());
+        assertEquals(CardinalDirection.NORTH, toyRobot.getPosition().getDirection());
 
 
-        toyRobot.setPosition(new RobotPosition(1, 2, Direction.EAST));
+        toyRobot.setPosition(new RobotPosition(1, 2, CardinalDirection.EAST));
         toyRobot.rotateLeft();
 
         assertEquals(1, toyRobot.getPosition().getXCoordinate());
         assertEquals(2, toyRobot.getPosition().getYCoordinate());
-        assertEquals(Direction.NORTH, toyRobot.getPosition().getDirection());
+        assertEquals(CardinalDirection.NORTH, toyRobot.getPosition().getDirection());
 
-        toyRobot.setPosition(new RobotPosition(0, 0, Direction.NORTH));
+        toyRobot.setPosition(new RobotPosition(0, 0, CardinalDirection.NORTH));
         toyRobot.rotateRight();
-        assertEquals(Direction.EAST, toyRobot.getPosition().getDirection());
+        assertEquals(CardinalDirection.EAST, toyRobot.getPosition().getDirection());
         toyRobot.rotateRight();
-        assertEquals(Direction.SOUTH, toyRobot.getPosition().getDirection());
+        assertEquals(CardinalDirection.SOUTH, toyRobot.getPosition().getDirection());
         toyRobot.rotateRight();
-        assertEquals(Direction.WEST, toyRobot.getPosition().getDirection());
+        assertEquals(CardinalDirection.WEST, toyRobot.getPosition().getDirection());
         toyRobot.rotateRight();
-        assertEquals(Direction.NORTH, toyRobot.getPosition().getDirection());
+        assertEquals(CardinalDirection.NORTH, toyRobot.getPosition().getDirection());
         toyRobot.rotateRight();
-        assertEquals(Direction.EAST, toyRobot.getPosition().getDirection());
+        assertEquals(CardinalDirection.EAST, toyRobot.getPosition().getDirection());
     }
 }

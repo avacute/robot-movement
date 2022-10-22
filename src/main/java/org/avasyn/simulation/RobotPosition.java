@@ -1,23 +1,23 @@
 package org.avasyn.simulation;
 
 
-import org.avasyn.exception.ToyRobotMovementException;
-import org.avasyn.util.Direction;
+import org.avasyn.exception.RobotMovementException;
+import org.avasyn.util.CardinalDirection;
 
 public class RobotPosition {
     private int xCoordinate;
     private int yCoordinate;
-    private Direction direction;
+    private CardinalDirection cardinalDirection;
 
     public RobotPosition(RobotPosition robotPosition){
         this.xCoordinate = robotPosition.getXCoordinate();
         this.yCoordinate = robotPosition.getYCoordinate();
-        this.direction = robotPosition.getDirection();
+        this.cardinalDirection = robotPosition.getDirection();
     }
-    public RobotPosition(int xCoordinate, int yCoordinate,Direction direction){
+    public RobotPosition(int xCoordinate, int yCoordinate, CardinalDirection cardinalDirection){
         this.xCoordinate = xCoordinate;
         this.yCoordinate = yCoordinate;
-        this.direction = direction;
+        this.cardinalDirection = cardinalDirection;
     }
 
     public int getXCoordinate() {
@@ -28,12 +28,12 @@ public class RobotPosition {
         return yCoordinate;
     }
 
-    public Direction getDirection() {
-        return direction;
+    public CardinalDirection getDirection() {
+        return cardinalDirection;
     }
 
-    public void setDirection(Direction direction) {
-        this.direction = direction;
+    public void setDirection(CardinalDirection cardinalDirection) {
+        this.cardinalDirection = cardinalDirection;
     }
 
     public void stepRobotPosition(int x, int y) {
@@ -44,13 +44,13 @@ public class RobotPosition {
         this.yCoordinate += y;
     }
 
-    public RobotPosition changeRobotPosition() throws ToyRobotMovementException {
+    public RobotPosition changeRobotPosition() throws RobotMovementException {
 
-        if (this.direction == null)
-            throw new ToyRobotMovementException("Robot not placed on Table");
+        if (this.cardinalDirection == null)
+            throw new RobotMovementException("Robot not placed on Table");
 
         RobotPosition newPosition  = new RobotPosition(this);
-        switch (this.direction) {
+        switch (this.cardinalDirection) {
             case NORTH:
                 newPosition.stepRobotPosition(0, 1);
                 break;

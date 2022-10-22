@@ -1,8 +1,8 @@
 package org.avasyn.simulation;
-import org.avasyn.exception.ToyRobotMovementException;
+import org.avasyn.exception.RobotMovementException;
 import org.avasyn.simulation.contract.Table;
 import org.avasyn.util.Command;
-import org.avasyn.util.Direction;
+import org.avasyn.util.CardinalDirection;
 
 public class Simulation {
 
@@ -14,16 +14,16 @@ public class Simulation {
         this.toyRobot = toyRobot;
     }
 
-    public String placeToyRobot(RobotPosition robotPosition) throws ToyRobotMovementException {
+    public String placeToyRobot(RobotPosition robotPosition) throws RobotMovementException {
 
         if (squareTable == null)
-            throw new ToyRobotMovementException("Invalid squareBoard object");
+            throw new RobotMovementException("Invalid squareBoard object");
 
         if (robotPosition == null)
-            throw new ToyRobotMovementException("Invalid position object");
+            throw new RobotMovementException("Invalid position object");
 
         if (robotPosition.getDirection() == null)
-            throw new ToyRobotMovementException("Invalid direction value");
+            throw new RobotMovementException("Invalid direction value");
 
         // validate the position
         if (!squareTable.isValidPosition(robotPosition))
@@ -35,7 +35,7 @@ public class Simulation {
     }
 
 
-    public String robotMovement(String inputString) throws ToyRobotMovementException {
+    public String robotMovement(String inputString) throws RobotMovementException {
 
 
         String[] args = inputString.split(" ");
@@ -45,27 +45,27 @@ public class Simulation {
         try {
             command = Command.valueOf(args[0]);
         } catch (IllegalArgumentException e) {
-            throw new ToyRobotMovementException("Invalid command");
+            throw new RobotMovementException("Invalid command");
         }
 
         // invalid Command
         if (command == Command.PLACE && args.length < 2) {
-            throw new ToyRobotMovementException("Invalid command");
+            throw new RobotMovementException("Invalid command");
         }
 
         // validate PLACE params
         String[] params;
         int x = 0;
         int y = 0;
-        Direction direction = null;
+        CardinalDirection cardinalDirection = null;
         if (command == Command.PLACE) {
             params = args[1].split(",");
             try {
                 x = Integer.parseInt(params[0]);
                 y = Integer.parseInt(params[1]);
-                direction = Direction.valueOf(params[2]);
+                cardinalDirection = CardinalDirection.valueOf(params[2]);
             } catch (Exception e) {
-                throw new ToyRobotMovementException("Invalid command");
+                throw new RobotMovementException("Invalid command");
             }
         }
 
@@ -73,7 +73,7 @@ public class Simulation {
 
         switch (command) {
             case PLACE:
-                output = String.valueOf(placeToyRobot(new RobotPosition(x, y, direction)));
+                output = String.valueOf(placeToyRobot(new RobotPosition(x, y, cardinalDirection)));
                 break;
             case MOVE:
                 RobotPosition newPosition = toyRobot.getPosition().changeRobotPosition();
@@ -92,7 +92,7 @@ public class Simulation {
                 output = report();
                 break;
             default:
-                throw new ToyRobotMovementException("Invalid command");
+                throw new RobotMovementException("Invalid command");
         }
 
         return output;
