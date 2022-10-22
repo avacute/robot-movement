@@ -53,7 +53,7 @@ public class Simulation {
         }
 
         // invalid Command if command is PLACE parameters less the 2
-        if (command.equals(Command.PLACE) && prams.length < 2)
+        if (command == Command.PLACE && prams.length < 2)
             throw new RobotMovementException("Invalid command");
 
 
@@ -85,23 +85,23 @@ public class Simulation {
                                   CardinalDirection cardinalDirection
                                   ) throws RobotMovementException {
 
-        if (command.equals(Command.PLACE)) {
+        if (command == Command.PLACE) {
             return new PlaceCommand().sendCommand(new RobotPosition(x, y, cardinalDirection), this, toyRobot);
         }
 
-        if (command.equals(Command.MOVE)) {
+        if (command == Command.MOVE) {
             return new MoveCommand().sendCommand(toyRobot.getRobotPosition().changeRobotPosition(), this, toyRobot);
         }
 
-        if (command.equals(Command.LEFT)) {
+        if (command == Command.LEFT) {
             return new LeftCommand().sendCommand(toyRobot.getRobotPosition().changeRobotPosition(), this, toyRobot);
         }
 
-        if (command.equals(Command.RIGHT)) {
+        if (command == Command.RIGHT) {
             return new RightCommand().sendCommand(toyRobot.getRobotPosition().changeRobotPosition(), this, toyRobot);
         }
 
-        if (command.equals(Command.REPORT)) {
+        if (command == Command.REPORT) {
             return new ReportCommand().sendCommand(toyRobot.getRobotPosition().changeRobotPosition(), this, toyRobot);
         }
 
