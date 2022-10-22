@@ -1,13 +1,15 @@
 package org.avasyn.simulation;
 import org.avasyn.exception.RobotMovementException;
+import org.avasyn.util.*;
+import org.avasyn.util.contract.SendCommand;
 import org.avasyn.simulation.contract.Table;
-import org.avasyn.util.Command;
-import org.avasyn.util.CardinalDirection;
 
 public class Simulation {
 
     private  Table squareTable;
     private ToyRobot toyRobot;
+
+    private SendCommand sendCommand;
 
     public Simulation (Table squareTable, ToyRobot toyRobot) {
         this.squareTable= squareTable;
@@ -34,7 +36,6 @@ public class Simulation {
         return "Robot placed on Table";
     }
 
-
     public String robotMovement(String inputString) throws RobotMovementException {
 
 
@@ -53,7 +54,7 @@ public class Simulation {
             throw new RobotMovementException("Invalid command");
         }
 
-        // validate PLACE params
+        // validate PLACE Command parameters
         String[] params;
         int x = 0;
         int y = 0;
@@ -70,40 +71,38 @@ public class Simulation {
         }
 
         String output;
-
-        switch (command) {
-            case PLACE:
-                output = String.valueOf(placeToyRobot(new RobotPosition(x, y, cardinalDirection)));
-                break;
-            case MOVE:
-                RobotPosition newPosition = toyRobot.getPosition().changeRobotPosition();
-                if (!squareTable.isValidPosition(newPosition))
-                    output = String.valueOf(false);
-                else
-                    output = String.valueOf(toyRobot.move(newPosition));
-                break;
-            case LEFT:
-                output = String.valueOf(toyRobot.rotateLeft());
-                break;
-            case RIGHT:
-                output = String.valueOf(toyRobot.rotateRight());
-                break;
-            case REPORT:
-                output = report();
-                break;
-            default:
-                throw new RobotMovementException("Invalid command");
-        }
-
+        output = null;
+        output = executeCommand(command, x, y, cardinalDirection, output);
         return output;
+
     }
 
-    public String report() {
-        if (toyRobot.getPosition() == null)
-            return null;
+    private String executeCommand(Command command, int x, int y,
+                                  CardinalDirection cardinalDirection,
+                                  String output) throws RobotMovementException {
+        if (command.equals(Command.PLACE)) {
+            output = new PlaceCommand().sendCommand(new RobotPosition(x, y, cardinalDirection), this, toyRobot);
+        }
 
-        return toyRobot.getPosition().getXCoordinate() + "," +
-                toyRobot.getPosition().getYCoordinate()+ "," +
-                toyRobot.getPosition().getDirection().toString();
+        if (command.equals(Command.MOVE)) {
+            output = new MoveCommand().sendCommand(toyRobot.getPosition().changeRobotPosition(), this, toyRobot);
+        }
+
+        if (command.equals(Command.LEFT)) {
+            output = new LeftCommand().sendCommand(toyRobot.getPosition().changeRobotPosition(), this, toyRobot);
+        }
+
+        if (command.equals(Command.RIGHT)) {
+            output = new RightCommand().sendCommand(toyRobot.getPosition().changeRobotPosition(), this, toyRobot);
+        }
+
+        if (command.equals(Command.REPORT)) {
+            output = new ReportCommand().sendCommand(toyRobot.getPosition().changeRobotPosition(), this, toyRobot);
+        }
+
+        if (output == null) {
+            throw new RobotMovementException("Invalid command");
+        }
+        return output;
     }
 }

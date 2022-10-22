@@ -1,15 +1,15 @@
 package org.avasyn.simulation;
 
+import org.avasyn.exception.RobotMovementException;
 import org.avasyn.util.CardinalDirection;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class RobotPositionTest {
 
     @Test
-    public void changeRobotPosition() throws Exception {
+   public void changeRobotPosition() throws RobotMovementException {
         RobotPosition robotPosition = new RobotPosition(5, 0, CardinalDirection.WEST);
 
         RobotPosition newPosition = robotPosition.changeRobotPosition();
