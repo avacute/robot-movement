@@ -51,7 +51,7 @@ move that would cause the robot to fall must be ignored.
 *Output: 3,3,NORTH*
 
 ## Code Structure
-![Screenshot](class-structure.png)
+![photo](class-structure.png)
 
 
 ## Requirements
