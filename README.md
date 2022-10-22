@@ -50,8 +50,8 @@ move that would cause the robot to fall must be ignored.
    * REPORT
 *Output: 3,3,NORTH*
 
-# Code Structure
-![ScreenShot] (/src/main/resources/class-structure.png)
+## Code Structure
+[ScreenShot] (/src/main/resources/class-structure.png)
 
 
 ## Requirements
