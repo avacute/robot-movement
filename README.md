@@ -55,12 +55,12 @@ move that would cause the robot to fall must be ignored.
 
 
 ## Requirements
-* Implemented and tested using Java 7 
+* Implemented and tested using Java 11 
 * Tests require JUnit 5.8.2 
 * Dependencies and compiling managed by Maven
 
 #Compile, Test, Run and Packaging
-* Compile: mvn compile 
-* Test: mvn test 
+* Test: mvn test
+* Compile: mvn compile
 * Run: mvn exec:java 
 * Packaging: mvn package, compiled jar in target

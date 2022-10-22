@@ -51,17 +51,17 @@ public class RobotPosition {
 
         RobotPosition newPosition  = new RobotPosition(this);
         switch (this.cardinalDirection) {
-            case NORTH:
-                newPosition.stepRobotPosition(0, 1);
+            case WEST:
+                newPosition.stepRobotPosition(-1, 0);
                 break;
             case EAST:
                 newPosition.stepRobotPosition(1, 0);
                 break;
+            case NORTH:
+                newPosition.stepRobotPosition(0, 1);
+                break;
             case SOUTH:
                 newPosition.stepRobotPosition(0, -1);
-                break;
-            case WEST:
-                newPosition.stepRobotPosition(-1, 0);
                 break;
         }
 
