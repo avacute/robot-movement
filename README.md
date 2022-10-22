@@ -29,27 +29,26 @@ move that would cause the robot to fall must be ignored.
 * REPORT
 
 ## Test Data and Output
-1. 
- * PLACE 0,0,NORTH
- * MOVE
- * REPORT
- * *Output: 0,1,NORTH*
+1. First test case
+   * PLACE 0,0,NORTH
+   * MOVE
+   * REPORT
+*Output: 0,1,NORTH*
 
-2.
- * PLACE 0,0,NORTH
- * LEFT
- * REPORT
- * *Output: 0,0,WEST*
+2. Second test case
+   * PLACE 0,0,NORTH
+   * LEFT
+   * REPORT
+*Output: 0,0,WEST*
 
-
-3. 
- * PLACE 1,2,EAST
- * MOVE
- * MOVE
- * LEFT
- * MOVE
- * REPORT
- * *Output: 3,3,NORTH*
+3. Third test case
+   * PLACE 1,2,EAST
+   * MOVE
+   * MOVE
+   * LEFT
+   * MOVE
+   * REPORT
+*Output: 3,3,NORTH*
 
 # Code Structure
 [photo]: /src/main/resources/class-structure.png "Optional Title"
