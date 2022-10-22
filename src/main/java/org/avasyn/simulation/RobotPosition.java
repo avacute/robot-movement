@@ -37,7 +37,6 @@ public class RobotPosition {
     }
 
     public void stepRobotPosition(int x, int y) {
-
         // add new step move required in x-axis to current x-position
         this.xCoordinate += x;
         // add new step move required in y-axis to current y-position
@@ -45,11 +44,13 @@ public class RobotPosition {
     }
 
     public RobotPosition changeRobotPosition() throws RobotMovementException {
-
+        // Check cardinal direction to know if robot is on table
         if (this.cardinalDirection == null)
             throw new RobotMovementException("Robot not placed on Table");
 
         RobotPosition newPosition  = new RobotPosition(this);
+
+        // move robot by increase or decreasing Coordinates based on current cardinal Direction
         switch (this.cardinalDirection) {
             case WEST:
                 newPosition.stepRobotPosition(-1, 0);

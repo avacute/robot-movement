@@ -1,4 +1,4 @@
-package org.avasyn.util.contract;
+package org.avasyn.util.sendcommand.contract;
 
 import org.avasyn.exception.RobotMovementException;
 import org.avasyn.simulation.RobotPosition;

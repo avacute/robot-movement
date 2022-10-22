@@ -1,7 +1,8 @@
 package org.avasyn.simulation;
 import org.avasyn.exception.RobotMovementException;
 import org.avasyn.util.*;
-import org.avasyn.util.contract.SendCommand;
+import org.avasyn.util.sendcommand.*;
+import org.avasyn.util.sendcommand.contract.SendCommand;
 import org.avasyn.simulation.contract.Table;
 
 public class Simulation {
@@ -12,11 +13,13 @@ public class Simulation {
     private SendCommand sendCommand;
 
     public Simulation (Table squareTable, ToyRobot toyRobot) {
+        // set squareTable to injected object
         this.squareTable= squareTable;
+        // set toyRobot to injected object
         this.toyRobot = toyRobot;
     }
 
-    public String placeToyRobot(RobotPosition robotPosition) throws RobotMovementException {
+    public String placeRobotTable(RobotPosition robotPosition) throws RobotMovementException {
 
         if (squareTable == null)
             throw new RobotMovementException("Invalid squareBoard object");
@@ -32,27 +35,27 @@ public class Simulation {
             return "Invalid position";
 
         // if position is valid then assign values to fields
-        toyRobot.setPosition(robotPosition);
+        toyRobot.setRobotPosition(robotPosition);
         return "Robot placed on Table";
     }
 
     public String robotMovement(String inputString) throws RobotMovementException {
 
-
-        String[] args = inputString.split(" ");
+        // split input String by space
+        String[] prams = inputString.split(" ");
 
         // validate command
         Command command;
         try {
-            command = Command.valueOf(args[0]);
+            command = Command.valueOf(prams[0]);
         } catch (IllegalArgumentException e) {
             throw new RobotMovementException("Invalid command");
         }
 
-        // invalid Command
-        if (command == Command.PLACE && args.length < 2) {
+        // invalid Command if command is PLACE parameters less the 2
+        if (command.equals(Command.PLACE) && prams.length < 2)
             throw new RobotMovementException("Invalid command");
-        }
+
 
         // validate PLACE Command parameters
         String[] params;
@@ -60,7 +63,8 @@ public class Simulation {
         int y = 0;
         CardinalDirection cardinalDirection = null;
         if (command == Command.PLACE) {
-            params = args[1].split(",");
+            // separate second parameter by comma ','
+            params = prams[1].split(",");
             try {
                 x = Integer.parseInt(params[0]);
                 y = Integer.parseInt(params[1]);
@@ -70,39 +74,37 @@ public class Simulation {
             }
         }
 
-        String output;
-        output = null;
-        output = executeCommand(command, x, y, cardinalDirection, output);
-        return output;
+        // execute command
+        return executeCommand(command, x, y, cardinalDirection);
+
 
     }
 
+    // get command and execute the right send command implementation
     private String executeCommand(Command command, int x, int y,
-                                  CardinalDirection cardinalDirection,
-                                  String output) throws RobotMovementException {
+                                  CardinalDirection cardinalDirection
+                                  ) throws RobotMovementException {
+
         if (command.equals(Command.PLACE)) {
-            output = new PlaceCommand().sendCommand(new RobotPosition(x, y, cardinalDirection), this, toyRobot);
+            return new PlaceCommand().sendCommand(new RobotPosition(x, y, cardinalDirection), this, toyRobot);
         }
 
         if (command.equals(Command.MOVE)) {
-            output = new MoveCommand().sendCommand(toyRobot.getPosition().changeRobotPosition(), this, toyRobot);
+            return new MoveCommand().sendCommand(toyRobot.getRobotPosition().changeRobotPosition(), this, toyRobot);
         }
 
         if (command.equals(Command.LEFT)) {
-            output = new LeftCommand().sendCommand(toyRobot.getPosition().changeRobotPosition(), this, toyRobot);
+            return new LeftCommand().sendCommand(toyRobot.getRobotPosition().changeRobotPosition(), this, toyRobot);
         }
 
         if (command.equals(Command.RIGHT)) {
-            output = new RightCommand().sendCommand(toyRobot.getPosition().changeRobotPosition(), this, toyRobot);
+            return new RightCommand().sendCommand(toyRobot.getRobotPosition().changeRobotPosition(), this, toyRobot);
         }
 
         if (command.equals(Command.REPORT)) {
-            output = new ReportCommand().sendCommand(toyRobot.getPosition().changeRobotPosition(), this, toyRobot);
+            return new ReportCommand().sendCommand(toyRobot.getRobotPosition().changeRobotPosition(), this, toyRobot);
         }
 
-        if (output == null) {
-            throw new RobotMovementException("Invalid command");
-        }
-        return output;
+        return null;
     }
 }

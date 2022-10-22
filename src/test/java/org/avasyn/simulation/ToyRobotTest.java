@@ -12,28 +12,28 @@ public class ToyRobotTest {
     public void testRobotMovement() throws RobotMovementException {
 
         ToyRobot toyRobot = new ToyRobot(new RobotPosition(0, 0, CardinalDirection.NORTH));
-        assertEquals(0, toyRobot.getPosition().getXCoordinate());
-        assertEquals(0, toyRobot.getPosition().getYCoordinate());
-        assertEquals(CardinalDirection.NORTH, toyRobot.getPosition().getDirection());
+        assertEquals(0, toyRobot.getRobotPosition().getXCoordinate());
+        assertEquals(0, toyRobot.getRobotPosition().getYCoordinate());
+        assertEquals(CardinalDirection.NORTH, toyRobot.getRobotPosition().getDirection());
 
 
-        toyRobot.setPosition(new RobotPosition(1, 2, CardinalDirection.EAST));
-        toyRobot.rotateLeft();
+        toyRobot.setRobotPosition(new RobotPosition(1, 2, CardinalDirection.EAST));
+        toyRobot.turnLeft();
 
-        assertEquals(1, toyRobot.getPosition().getXCoordinate());
-        assertEquals(2, toyRobot.getPosition().getYCoordinate());
-        assertEquals(CardinalDirection.NORTH, toyRobot.getPosition().getDirection());
+        assertEquals(1, toyRobot.getRobotPosition().getXCoordinate());
+        assertEquals(2, toyRobot.getRobotPosition().getYCoordinate());
+        assertEquals(CardinalDirection.NORTH, toyRobot.getRobotPosition().getDirection());
 
-        toyRobot.setPosition(new RobotPosition(0, 0, CardinalDirection.NORTH));
-        toyRobot.rotateRight();
-        assertEquals(CardinalDirection.EAST, toyRobot.getPosition().getDirection());
-        toyRobot.rotateRight();
-        assertEquals(CardinalDirection.SOUTH, toyRobot.getPosition().getDirection());
-        toyRobot.rotateRight();
-        assertEquals(CardinalDirection.WEST, toyRobot.getPosition().getDirection());
-        toyRobot.rotateRight();
-        assertEquals(CardinalDirection.NORTH, toyRobot.getPosition().getDirection());
-        toyRobot.rotateRight();
-        assertEquals(CardinalDirection.EAST, toyRobot.getPosition().getDirection());
+        toyRobot.setRobotPosition(new RobotPosition(0, 0, CardinalDirection.NORTH));
+        toyRobot.turnRight();
+        assertEquals(CardinalDirection.EAST, toyRobot.getRobotPosition().getDirection());
+        toyRobot.turnRight();
+        assertEquals(CardinalDirection.SOUTH, toyRobot.getRobotPosition().getDirection());
+        toyRobot.turnRight();
+        assertEquals(CardinalDirection.WEST, toyRobot.getRobotPosition().getDirection());
+        toyRobot.turnRight();
+        assertEquals(CardinalDirection.NORTH, toyRobot.getRobotPosition().getDirection());
+        toyRobot.turnRight();
+        assertEquals(CardinalDirection.EAST, toyRobot.getRobotPosition().getDirection());
     }
 }

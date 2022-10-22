@@ -12,7 +12,7 @@ public class ToyRobot implements Robot {
         this.robotPosition = robotPosition;
     }
 
-    public String setPosition(RobotPosition robotPosition) {
+    public String setRobotPosition(RobotPosition robotPosition) {
         if (robotPosition == null)
             return "Can't set robot position; invalid position";
 
@@ -21,7 +21,7 @@ public class ToyRobot implements Robot {
     }
 
 
-    public String move(RobotPosition newPosition) {
+    public String moveRobot(RobotPosition newPosition) {
         if (newPosition == null)
             return "Can't move Robot; robot not on table";
 
@@ -30,14 +30,14 @@ public class ToyRobot implements Robot {
         return "Robot move towards " + robotPosition.getDirection();
     }
 
-    public RobotPosition getPosition() {
+    public RobotPosition getRobotPosition() {
         if (robotPosition == null)
             return new RobotPosition(0,0,null);
         return this.robotPosition;
     }
 
 
-    public String rotateLeft() {
+    public String turnLeft() {
         if (this.robotPosition == null)
             return "Can't rotate robot; robot not on table";
 
@@ -46,7 +46,7 @@ public class ToyRobot implements Robot {
     }
 
 
-    public String rotateRight() {
+    public String turnRight() {
         if (this.robotPosition == null)
             return "Can't rotate robot; robot not on table";
 

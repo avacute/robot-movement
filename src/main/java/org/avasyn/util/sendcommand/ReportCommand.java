@@ -1,10 +1,10 @@
-package org.avasyn.util;
+package org.avasyn.util.sendcommand;
 
 import org.avasyn.exception.RobotMovementException;
 import org.avasyn.simulation.RobotPosition;
 import org.avasyn.simulation.Simulation;
 import org.avasyn.simulation.ToyRobot;
-import org.avasyn.util.contract.SendCommand;
+import org.avasyn.util.sendcommand.contract.SendCommand;
 
 public class ReportCommand implements SendCommand {
 
@@ -12,11 +12,11 @@ public class ReportCommand implements SendCommand {
 
     @Override
     public String sendCommand(RobotPosition robotPosition, Simulation simulation, ToyRobot toyRobot) throws RobotMovementException {
-        if (toyRobot.getPosition() == null)
+        if (toyRobot.getRobotPosition() == null)
             return null;
 
-        return toyRobot.getPosition().getXCoordinate() + "," +
-                toyRobot.getPosition().getYCoordinate()+ "," +
-                toyRobot.getPosition().getDirection().toString();
+        return toyRobot.getRobotPosition().getXCoordinate() + "," +
+                toyRobot.getRobotPosition().getYCoordinate()+ "," +
+                toyRobot.getRobotPosition().getDirection().toString();
     }
 }
