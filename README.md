@@ -27,6 +27,7 @@ move that would cause the robot to fall must be ignored.
 * LEFT
 * RIGHT
 * REPORT
+* EXIT
 
 ## Test Data and Output
 1. First test case
@@ -56,10 +57,11 @@ move that would cause the robot to fall must be ignored.
 
 ## Requirements
 * Implemented and tested using Java 11 
-* Tests require JUnit 5.8.2 
+* Tests require JUnit 5.9.0 
 * Dependencies and compiling managed by Maven
 
 #Compile, Test, Run and Packaging
+* Clean: mvn clean
 * Test: mvn test
 * Compile: mvn compile
 * Run: mvn exec:java 
