@@ -41,6 +41,7 @@ public class ToyRobot implements Robot {
         if (this.robotPosition == null)
             return "Can't rotate robot; robot not on table";
 
+        // rotate left using leftDirection from Direction enum class
         this.robotPosition.setDirection(this.robotPosition.getDirection().leftDirection());
         return "Robot turned Left: " + robotPosition.getDirection();
     }
@@ -50,6 +51,7 @@ public class ToyRobot implements Robot {
         if (this.robotPosition == null)
             return "Can't rotate robot; robot not on table";
 
+        // rotate right using rightDirection from Direction enum class
         this.robotPosition.setDirection(this.robotPosition.getDirection().rightDirection());
         return "Robot turned Right: " + robotPosition.getDirection();
     }
