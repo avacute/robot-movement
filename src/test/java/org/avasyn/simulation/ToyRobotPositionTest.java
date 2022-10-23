@@ -9,26 +9,26 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class ToyRobotPositionTest {
      @Test
-     public void changeRobotPosition() throws RobotMovementException {
+     public void testChangeRobotPosition() throws RobotMovementException {
         RobotPosition toyRobotPosition = new ToyRobotPosition(5, 0, CardinalDirection.WEST);
 
         RobotPosition newPosition = toyRobotPosition.changeRobotPosition();
-        assertEquals(newPosition.getXCoordinate(), 4);
-        assertEquals(newPosition.getYCoordinate(), 0);
-        assertEquals(newPosition.getDirection(), CardinalDirection.WEST);
+        assertEquals(4,newPosition.getXCoordinate());
+        assertEquals(0,newPosition.getYCoordinate());
+        assertEquals(CardinalDirection.WEST,newPosition.getDirection());
 
         newPosition = newPosition.changeRobotPosition();
-        assertNotEquals(newPosition.getXCoordinate(), 1);
-        assertEquals(newPosition.getXCoordinate(), 3);
-        assertEquals(newPosition.getYCoordinate(), 0);
-        assertEquals(newPosition.getDirection(), CardinalDirection.WEST);
+        assertNotEquals(1,newPosition.getXCoordinate());
+        assertEquals(3,newPosition.getXCoordinate());
+        assertEquals(0,newPosition.getYCoordinate());
+        assertEquals(CardinalDirection.WEST,newPosition.getDirection());
 
         newPosition.setDirection(CardinalDirection.NORTH);
         newPosition = newPosition.changeRobotPosition();
-        assertNotEquals(newPosition.getXCoordinate(), 1);
-        assertEquals(newPosition.getYCoordinate(), 1);
-        assertEquals(newPosition.getDirection(), CardinalDirection.NORTH);
-        assertNotEquals(newPosition.getDirection(), CardinalDirection.SOUTH);
+        assertNotEquals(1,newPosition.getXCoordinate());
+        assertEquals(1,newPosition.getYCoordinate());
+        assertEquals(CardinalDirection.NORTH,newPosition.getDirection());
+        assertNotEquals(CardinalDirection.SOUTH,newPosition.getDirection());
 
     }
 }

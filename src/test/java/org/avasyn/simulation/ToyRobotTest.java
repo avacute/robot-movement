@@ -2,6 +2,7 @@ package org.avasyn.simulation;
 
 import org.avasyn.exception.RobotMovementException;
 import org.avasyn.simulation.contract.Robot;
+import org.avasyn.simulation.contract.RobotPosition;
 import org.avasyn.util.CardinalDirection;
 import org.junit.jupiter.api.Test;
 
@@ -36,5 +37,23 @@ public class ToyRobotTest {
         assertEquals(CardinalDirection.NORTH, toyRobot.getRobotPosition().getDirection());
         toyRobot.turnRight();
         assertEquals(CardinalDirection.EAST, toyRobot.getRobotPosition().getDirection());
+    }
+
+    @Test
+    public void testMoveRobotMethod() throws RobotMovementException {
+        Robot toyRobot = new ToyRobot(new ToyRobotPosition(0, 0, CardinalDirection.NORTH));
+
+        assertEquals("Robot move towards NORTH", toyRobot.moveRobot(toyRobot.getRobotPosition()) );
+
+        assertEquals("Can't move Robot; robot not on table", toyRobot.moveRobot(null) );
+    }
+
+    @Test
+    public void testSetRobotPosition() throws RobotMovementException {
+        Robot toyRobot = new ToyRobot(new ToyRobotPosition(0, 0, CardinalDirection.NORTH));
+
+        assertEquals("Robot is positioned", toyRobot.setRobotPosition(toyRobot.getRobotPosition()) );
+
+        assertEquals("Can't set robot position; invalid position", toyRobot.setRobotPosition(null) );
     }
 }

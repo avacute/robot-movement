@@ -1,28 +1,29 @@
 package org.avasyn.simulation;
 import org.avasyn.command.SendCommandFactory;
 import org.avasyn.exception.RobotMovementException;
+import org.avasyn.simulation.contract.Robot;
+import org.avasyn.simulation.contract.RobotPosition;
 import org.avasyn.util.*;
 import org.avasyn.command.Command;
-import org.avasyn.command.contract.SendCommand;
 import org.avasyn.simulation.contract.Table;
 
 public class Simulation {
 
     private  Table squareTable;
-    private ToyRobot toyRobot;
+    private Robot toyRobot;
 
-    private SendCommand sendCommand;
+    private static final String INVALID_COMMAND = "Invalid command";
 
-    private SendCommandFactory sendCommandFactory;
 
-    public Simulation (Table squareTable, ToyRobot toyRobot) {
+
+    public Simulation (Table squareTable, Robot toyRobot) {
         // set squareTable to injected object
         this.squareTable= squareTable;
         // set toyRobot to injected object
         this.toyRobot = toyRobot;
     }
 
-    public String placeRobotTable(ToyRobotPosition toyRobotPosition) throws RobotMovementException {
+    public String placeRobotTable(RobotPosition toyRobotPosition) throws RobotMovementException {
 
         if (squareTable == null)
             throw new RobotMovementException("Invalid squareBoard object");
@@ -52,12 +53,12 @@ public class Simulation {
         try {
             command = Command.valueOf(prams[0]);
         } catch (IllegalArgumentException e) {
-            throw new RobotMovementException("Invalid command");
+            throw new RobotMovementException(INVALID_COMMAND);
         }
 
         // invalid Command if command is PLACE parameters less the 2
         if (command == Command.PLACE && prams.length < 2)
-            throw new RobotMovementException("Invalid command");
+            throw new RobotMovementException(INVALID_COMMAND);
 
 
         // validate PLACE Command parameters
@@ -73,12 +74,12 @@ public class Simulation {
                 y = Integer.parseInt(params[1]);
                 cardinalDirection = CardinalDirection.valueOf(params[2]);
             } catch (Exception e) {
-                throw new RobotMovementException("Invalid command");
+                throw new RobotMovementException(INVALID_COMMAND);
             }
         }
 
         // create sendCommandFactory object
-        sendCommandFactory = new SendCommandFactory();
+        SendCommandFactory sendCommandFactory = new SendCommandFactory();
         // execute command
         return sendCommandFactory.executeCommand(command, x, y, cardinalDirection,toyRobot,this);
 

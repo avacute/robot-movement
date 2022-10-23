@@ -3,7 +3,7 @@ package org.avasyn.command;
 import org.avasyn.exception.RobotMovementException;
 import org.avasyn.simulation.ToyRobotPosition;
 import org.avasyn.simulation.Simulation;
-import org.avasyn.simulation.ToyRobot;
+import org.avasyn.simulation.contract.Robot;
 import org.avasyn.util.CardinalDirection;
 
 public class SendCommandFactory {
@@ -11,7 +11,7 @@ public class SendCommandFactory {
     // get command and execute the right send command implementation
     public String executeCommand(Command command, int x, int y,
                                   CardinalDirection cardinalDirection,
-                                  ToyRobot toyRobot,
+                                  Robot toyRobot,
                                   Simulation simulation
     ) throws RobotMovementException {
 

@@ -1,26 +1,25 @@
 package org.avasyn.command;
 
 import org.avasyn.exception.RobotMovementException;
-import org.avasyn.simulation.ToyRobotPosition;
 import org.avasyn.simulation.Simulation;
 import org.avasyn.simulation.SquareTable;
-import org.avasyn.simulation.ToyRobot;
 import org.avasyn.command.contract.SendCommand;
+import org.avasyn.simulation.contract.Robot;
+import org.avasyn.simulation.contract.RobotPosition;
 import org.avasyn.simulation.contract.Table;
 
 public class MoveCommand implements SendCommand {
 
-    private Table squareTable;
-
     @Override
-    public String sendCommand(ToyRobotPosition toyRobotPosition, Simulation simulation, ToyRobot toyRobot) throws RobotMovementException {
+    public String sendCommand(RobotPosition toyRobotPosition, Simulation simulation, Robot toyRobot) throws RobotMovementException {
         String output;
-        squareTable = new SquareTable(5,5);
-        toyRobotPosition = toyRobot.getRobotPosition().changeRobotPosition();
-        if (!squareTable.isValidPosition(toyRobotPosition))
+        Table squareTable = new SquareTable(5,5);
+        RobotPosition newToyRobotPosition;
+        newToyRobotPosition = toyRobot.getRobotPosition().changeRobotPosition();
+        if (!squareTable.isValidPosition(newToyRobotPosition))
             output = String.valueOf(false);
         else
-            output = String.valueOf(toyRobot.moveRobot(toyRobotPosition));
+            output = String.valueOf(toyRobot.moveRobot(newToyRobotPosition));
         return output;
     }
 }

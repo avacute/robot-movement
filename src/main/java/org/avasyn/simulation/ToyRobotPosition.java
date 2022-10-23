@@ -9,6 +9,7 @@ public class ToyRobotPosition implements org.avasyn.simulation.contract.RobotPos
     private int yCoordinate;
     private CardinalDirection cardinalDirection;
 
+
     public ToyRobotPosition(ToyRobotPosition toyRobotPosition){
         this.xCoordinate = toyRobotPosition.getXCoordinate();
         this.yCoordinate = toyRobotPosition.getYCoordinate();

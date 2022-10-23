@@ -1,4 +1,5 @@
 package org.avasyn.simulation;
+import org.avasyn.simulation.contract.RobotPosition;
 import org.avasyn.simulation.contract.Table;
 
 public class SquareTable implements Table {
@@ -9,12 +10,7 @@ public class SquareTable implements Table {
         this.rows = rows;
         this.columns = columns;
     }
-    public boolean isValidPosition(ToyRobotPosition toyRobotPosition) {
-        // check for square table
-        if(rows != columns) {
-            System.out.println("Not a square table");
-            return false;
-        }
+    public boolean isValidPosition(RobotPosition toyRobotPosition) {
         // Check if move is with the table row range
         boolean xOutOfRange = toyRobotPosition.getXCoordinate() > this.rows || toyRobotPosition.getXCoordinate() < 0;
 

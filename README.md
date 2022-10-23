@@ -51,18 +51,16 @@ move that would cause the robot to fall must be ignored.
    * REPORT
 *Output: 3,3,NORTH*
 
-## Code Structure
-![photo](class-structure.png)
-
-
 ## Requirements
 * Implemented and tested using Java 11 
-* Tests require JUnit 5.9.0 
+* Tests require JUnit 5.9.0, jacoco 0.8.4
+* Quality Check Sonarqube
 * Dependencies and compiling managed by Maven
 
 #Compile, Test, Run and Packaging
 * Clean: mvn clean
 * Test: mvn test
+* mvn sonar:sonar -Dsonar.login=<login> -Dsonar.password=<password>
 * Run: mvn exec:java
 * Compile: mvn compile
 * Packaging: mvn package, compiled jar in target
