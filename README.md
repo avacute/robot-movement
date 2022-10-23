@@ -62,7 +62,7 @@ move that would cause the robot to fall must be ignored.
 * Code quality and security check SonarQube plugin version 3.9.1.2184; please ensure sonarQube server is running
 * Dependencies and compiling managed by Maven
 
-#Compile, Test, Run and Packaging
+## Compile, Test, Run and Packaging
 * Test: mvn clean test
 * mvn sonar:sonar -Dsonar.login=<auth token>
 * Run: mvn exec:java
