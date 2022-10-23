@@ -6,37 +6,37 @@ import static org.junit.jupiter.api.Assertions.*;
 public class DirectionTest {
 
     @Test
-    public void testDirectionRotate() throws Exception {
+    public void testDirectionRotate() {
         CardinalDirection cardinalDirection = CardinalDirection.WEST;
 
         cardinalDirection = cardinalDirection.leftDirection();
-        assertEquals(cardinalDirection, CardinalDirection.SOUTH);
+        assertEquals(CardinalDirection.SOUTH,cardinalDirection);
 
         cardinalDirection = cardinalDirection.leftDirection();
-        assertEquals(cardinalDirection, CardinalDirection.EAST);
+        assertEquals(CardinalDirection.EAST,cardinalDirection);
 
         cardinalDirection = cardinalDirection.leftDirection();
-        assertEquals(cardinalDirection, CardinalDirection.NORTH);
+        assertEquals(CardinalDirection.NORTH,cardinalDirection);
 
         cardinalDirection = cardinalDirection.leftDirection();
-        assertEquals(cardinalDirection, CardinalDirection.WEST);
+        assertEquals(CardinalDirection.WEST,cardinalDirection);
 
         cardinalDirection = cardinalDirection.leftDirection();
-        assertEquals(cardinalDirection, CardinalDirection.SOUTH);
+        assertEquals(CardinalDirection.SOUTH,cardinalDirection);
 
         cardinalDirection = cardinalDirection.rightDirection();
-        assertEquals(cardinalDirection, CardinalDirection.WEST);
+        assertEquals(CardinalDirection.WEST,cardinalDirection);
 
         cardinalDirection = cardinalDirection.rightDirection();
-        assertEquals(cardinalDirection, CardinalDirection.NORTH);
+        assertEquals(CardinalDirection.NORTH,cardinalDirection);
 
         cardinalDirection = cardinalDirection.rightDirection();
-        assertEquals(cardinalDirection, CardinalDirection.EAST);
+        assertEquals(CardinalDirection.EAST,cardinalDirection);
 
         cardinalDirection = cardinalDirection.rightDirection();
-        assertEquals(cardinalDirection, CardinalDirection.SOUTH);
+        assertEquals(CardinalDirection.SOUTH,cardinalDirection);
 
         cardinalDirection = cardinalDirection.rightDirection();
-        assertEquals(cardinalDirection, CardinalDirection.WEST);
+        assertEquals(CardinalDirection.WEST,cardinalDirection);
     }
 }

@@ -10,8 +10,8 @@ public enum CardinalDirection {
     SOUTH(2),
     WEST(3);
 
-    private static Map<Integer, CardinalDirection> directionMap = new HashMap<Integer, CardinalDirection>();
-    private int directionIndex;
+    private static final Map<Integer, CardinalDirection> directionMap = new HashMap<>();
+    private final int directionIndex;
 
     static {
         for (CardinalDirection cardinalDirectionEnum : CardinalDirection.values()) {
@@ -20,7 +20,7 @@ public enum CardinalDirection {
     }
 
 
-    private CardinalDirection(int direction) {
+    CardinalDirection(int direction) {
         this.directionIndex = direction;
     }
 
