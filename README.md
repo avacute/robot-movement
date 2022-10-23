@@ -51,10 +51,14 @@ move that would cause the robot to fall must be ignored.
    * REPORT
 *Output: 3,3,NORTH*
 
+## Code Structure
+![photo](class-structure.png)
+
+
 ## Requirements
 * Implemented and tested using Java 11 
 * Tests require JUnit 5.9.0, jacoco 0.8.4
-* Quality Check Sonarqube
+* Code quality and security check Sonarqube; please ensure sonarqube server is running and can connect on port 9000
 * Dependencies and compiling managed by Maven
 
 #Compile, Test, Run and Packaging
