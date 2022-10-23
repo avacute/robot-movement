@@ -52,7 +52,8 @@ move that would cause the robot to fall must be ignored.
 *Output: 3,3,NORTH*
 
 ## Code Statistics
-![photo](class-structure.png)
+![photo](class-structure.png) "Code smells are due to public test classes and usage of System.out.print instead of loggers"
+
 
 
 ## Requirements
