@@ -1,11 +1,10 @@
 package org.avasyn.simulation;
 
-import org.avasyn.command.Command;
+
 import org.avasyn.exception.RobotMovementException;
 import org.avasyn.simulation.contract.Robot;
 import org.avasyn.simulation.contract.Table;
 import org.avasyn.util.CardinalDirection;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -35,9 +34,8 @@ public class SimulationTest {
         toyRobot  = new ToyRobot();
         simulation = new Simulation(squareTable,toyRobot);
 
-        RobotMovementException thrown = assertThrows(RobotMovementException.class, () -> {
-                simulation.robotMovement("MOVE");
-                }, "Invalid command");
+        assertThrows(RobotMovementException.class, () -> {
+            simulation.robotMovement("MOVE");}, "Invalid command");
     }
 }
 

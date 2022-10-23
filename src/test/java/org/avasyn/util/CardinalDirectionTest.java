@@ -3,10 +3,10 @@ package org.avasyn.util;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class DirectionTest {
+public class CardinalDirectionTest {
 
     @Test
-    public void testDirectionRotate() {
+    void testDirectionRotate() {
         CardinalDirection cardinalDirection = CardinalDirection.WEST;
 
         cardinalDirection = cardinalDirection.leftDirection();
