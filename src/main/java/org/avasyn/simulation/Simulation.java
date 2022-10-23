@@ -12,6 +12,8 @@ public class Simulation {
 
     private SendCommand sendCommand;
 
+    private SendCommandFactory sendCommandFactory;
+
     public Simulation (Table squareTable, ToyRobot toyRobot) {
         // set squareTable to injected object
         this.squareTable= squareTable;
@@ -74,37 +76,11 @@ public class Simulation {
             }
         }
 
+        // create sendCommandFactory object
+        sendCommandFactory = new SendCommandFactory();
         // execute command
-        return executeCommand(command, x, y, cardinalDirection);
+        return sendCommandFactory.executeCommand(command, x, y, cardinalDirection,toyRobot,this);
 
 
-    }
-
-    // get command and execute the right send command implementation
-    private String executeCommand(Command command, int x, int y,
-                                  CardinalDirection cardinalDirection
-                                  ) throws RobotMovementException {
-
-        if (command == Command.PLACE) {
-            return new PlaceCommand().sendCommand(new RobotPosition(x, y, cardinalDirection), this, toyRobot);
-        }
-
-        if (command == Command.MOVE) {
-            return new MoveCommand().sendCommand(toyRobot.getRobotPosition().changeRobotPosition(), this, toyRobot);
-        }
-
-        if (command == Command.LEFT) {
-            return new LeftCommand().sendCommand(toyRobot.getRobotPosition().changeRobotPosition(), this, toyRobot);
-        }
-
-        if (command == Command.RIGHT) {
-            return new RightCommand().sendCommand(toyRobot.getRobotPosition().changeRobotPosition(), this, toyRobot);
-        }
-
-        if (command == Command.REPORT) {
-            return new ReportCommand().sendCommand(toyRobot.getRobotPosition().changeRobotPosition(), this, toyRobot);
-        }
-
-        return null;
     }
 }
