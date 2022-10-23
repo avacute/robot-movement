@@ -1,9 +1,10 @@
-package org.avasyn.simulation;
+package org.avasyn.command;
 
 import org.avasyn.exception.RobotMovementException;
+import org.avasyn.simulation.ToyRobotPosition;
+import org.avasyn.simulation.Simulation;
+import org.avasyn.simulation.ToyRobot;
 import org.avasyn.util.CardinalDirection;
-import org.avasyn.util.Command;
-import org.avasyn.util.sendcommand.*;
 
 public class SendCommandFactory {
 
@@ -16,7 +17,7 @@ public class SendCommandFactory {
 
         if (command == Command.PLACE) {
             return new PlaceCommand().sendCommand(
-                    new RobotPosition(x, y, cardinalDirection),
+                    new ToyRobotPosition(x, y, cardinalDirection),
                     simulation, toyRobot);
         }
 

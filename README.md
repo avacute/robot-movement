@@ -63,6 +63,6 @@ move that would cause the robot to fall must be ignored.
 #Compile, Test, Run and Packaging
 * Clean: mvn clean
 * Test: mvn test
+* Run: mvn exec:java
 * Compile: mvn compile
-* Run: mvn exec:java 
 * Packaging: mvn package, compiled jar in target

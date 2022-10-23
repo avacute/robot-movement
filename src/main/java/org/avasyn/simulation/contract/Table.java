@@ -1,7 +1,7 @@
 package org.avasyn.simulation.contract;
 
-import org.avasyn.simulation.RobotPosition;
+import org.avasyn.simulation.ToyRobotPosition;
 
 public interface Table {
-    public boolean isValidPosition(RobotPosition robotPosition);
+    public boolean isValidPosition(ToyRobotPosition toyRobotPosition);
 }

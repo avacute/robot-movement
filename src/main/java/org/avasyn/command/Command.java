@@ -1,4 +1,4 @@
-package org.avasyn.util;
+package org.avasyn.command;
 
 public enum Command {
     PLACE,

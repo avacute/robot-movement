@@ -4,38 +4,43 @@ package org.avasyn.simulation;
 import org.avasyn.exception.RobotMovementException;
 import org.avasyn.util.CardinalDirection;
 
-public class RobotPosition {
+public class ToyRobotPosition implements org.avasyn.simulation.contract.RobotPosition {
     private int xCoordinate;
     private int yCoordinate;
     private CardinalDirection cardinalDirection;
 
-    public RobotPosition(RobotPosition robotPosition){
-        this.xCoordinate = robotPosition.getXCoordinate();
-        this.yCoordinate = robotPosition.getYCoordinate();
-        this.cardinalDirection = robotPosition.getDirection();
+    public ToyRobotPosition(ToyRobotPosition toyRobotPosition){
+        this.xCoordinate = toyRobotPosition.getXCoordinate();
+        this.yCoordinate = toyRobotPosition.getYCoordinate();
+        this.cardinalDirection = toyRobotPosition.getDirection();
     }
-    public RobotPosition(int xCoordinate, int yCoordinate, CardinalDirection cardinalDirection){
+    public ToyRobotPosition(int xCoordinate, int yCoordinate, CardinalDirection cardinalDirection){
         this.xCoordinate = xCoordinate;
         this.yCoordinate = yCoordinate;
         this.cardinalDirection = cardinalDirection;
     }
 
+    @Override
     public int getXCoordinate() {
         return xCoordinate;
     }
 
+    @Override
     public int getYCoordinate() {
         return yCoordinate;
     }
 
+    @Override
     public CardinalDirection getDirection() {
         return cardinalDirection;
     }
 
+    @Override
     public void setDirection(CardinalDirection cardinalDirection) {
         this.cardinalDirection = cardinalDirection;
     }
 
+    @Override
     public void stepRobotPosition(int x, int y) {
         // add new step move required in x-axis to current x-position
         this.xCoordinate += x;
@@ -43,12 +48,13 @@ public class RobotPosition {
         this.yCoordinate += y;
     }
 
-    public RobotPosition changeRobotPosition() throws RobotMovementException {
+    @Override
+    public ToyRobotPosition changeRobotPosition() throws RobotMovementException {
         // Check cardinal direction to know if robot is on table
         if (this.cardinalDirection == null)
             throw new RobotMovementException("Robot not placed on Table");
 
-        RobotPosition newPosition  = new RobotPosition(this);
+        ToyRobotPosition newPosition  = new ToyRobotPosition(this);
 
         // move robot by increase or decreasing Coordinates based on current cardinal Direction
         switch (this.cardinalDirection) {

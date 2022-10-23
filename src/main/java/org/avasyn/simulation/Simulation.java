@@ -1,8 +1,9 @@
 package org.avasyn.simulation;
+import org.avasyn.command.SendCommandFactory;
 import org.avasyn.exception.RobotMovementException;
 import org.avasyn.util.*;
-import org.avasyn.util.sendcommand.*;
-import org.avasyn.util.sendcommand.contract.SendCommand;
+import org.avasyn.command.Command;
+import org.avasyn.command.contract.SendCommand;
 import org.avasyn.simulation.contract.Table;
 
 public class Simulation {
@@ -21,23 +22,23 @@ public class Simulation {
         this.toyRobot = toyRobot;
     }
 
-    public String placeRobotTable(RobotPosition robotPosition) throws RobotMovementException {
+    public String placeRobotTable(ToyRobotPosition toyRobotPosition) throws RobotMovementException {
 
         if (squareTable == null)
             throw new RobotMovementException("Invalid squareBoard object");
 
-        if (robotPosition == null)
+        if (toyRobotPosition == null)
             throw new RobotMovementException("Invalid position object");
 
-        if (robotPosition.getDirection() == null)
+        if (toyRobotPosition.getDirection() == null)
             throw new RobotMovementException("Invalid direction value");
 
         // validate the position
-        if (!squareTable.isValidPosition(robotPosition))
+        if (!squareTable.isValidPosition(toyRobotPosition))
             return "Invalid position";
 
         // if position is valid then assign values to fields
-        toyRobot.setRobotPosition(robotPosition);
+        toyRobot.setRobotPosition(toyRobotPosition);
         return "Robot placed on Table";
     }
 
