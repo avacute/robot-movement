@@ -21,7 +21,7 @@ public class MoveCommandTest {
         MoveCommand moveCommand = new MoveCommand();
 
         assertEquals("Robot move towards NORTH", moveCommand.sendCommand(
-                toyRobotPosition,null, toyRobot));
+                squareTable,null, toyRobot));
 
     }
 }

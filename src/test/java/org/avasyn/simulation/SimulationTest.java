@@ -21,11 +21,11 @@ public class SimulationTest {
         toyRobot  = new ToyRobot();
         simulation = new Simulation(squareTable,toyRobot);
         assertEquals("Robot placed on Table", simulation.placeRobotTable(new ToyRobotPosition(
-                0, 0, CardinalDirection.NORTH)));
+                0, 0, CardinalDirection.NORTH),squareTable));
         assertEquals("Invalid position", simulation.placeRobotTable(new ToyRobotPosition(
-                0, 6, CardinalDirection.NORTH)));
+                0, 6, CardinalDirection.NORTH),squareTable));
         assertNotEquals("Invalid position", simulation.placeRobotTable(new ToyRobotPosition(
-                0, 0, CardinalDirection.NORTH)));
+                0, 0, CardinalDirection.NORTH),squareTable));
     }
 
     @Test

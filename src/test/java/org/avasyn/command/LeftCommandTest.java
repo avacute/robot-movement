@@ -15,8 +15,8 @@ public class LeftCommandTest {
         RobotPosition toyRobotPosition = new ToyRobotPosition(0,0, CardinalDirection.NORTH);
         Robot toyRobot = new ToyRobot(toyRobotPosition);
         LeftCommand leftCommand = new LeftCommand();
-        assertEquals("Robot turned Left: WEST", leftCommand.sendCommand(null,null, toyRobot));
+        assertEquals("Robot turned Left: WEST", leftCommand.sendCommand(toyRobot));
         toyRobot = new ToyRobot(null);
-        assertEquals("Can't rotate robot; robot not on table", leftCommand.sendCommand(null,null, toyRobot));
+        assertEquals("Can't rotate robot; robot not on table", leftCommand.sendCommand(toyRobot));
     }
 }

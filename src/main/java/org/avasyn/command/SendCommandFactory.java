@@ -4,6 +4,7 @@ import org.avasyn.exception.RobotMovementException;
 import org.avasyn.simulation.ToyRobotPosition;
 import org.avasyn.simulation.Simulation;
 import org.avasyn.simulation.contract.Robot;
+import org.avasyn.simulation.contract.Table;
 import org.avasyn.util.CardinalDirection;
 
 public class SendCommandFactory {
@@ -12,37 +13,29 @@ public class SendCommandFactory {
     public String executeCommand(Command command, int x, int y,
                                   CardinalDirection cardinalDirection,
                                   Robot toyRobot,
-                                  Simulation simulation
+                                  Simulation simulation, Table squareTable
     ) throws RobotMovementException {
 
         if (command == Command.PLACE) {
-            return new PlaceCommand().sendCommand(
+            return new PlaceCommand().sendCommand(squareTable,
                     new ToyRobotPosition(x, y, cardinalDirection),
-                    simulation, toyRobot);
+                    simulation);
         }
 
         if (command == Command.MOVE) {
-            return new MoveCommand().sendCommand(
-                    toyRobot.getRobotPosition().changeRobotPosition(),
-                    simulation, toyRobot);
+            return new MoveCommand().sendCommand(squareTable,simulation, toyRobot);
         }
 
         if (command == Command.LEFT) {
-            return new LeftCommand().sendCommand(
-                    toyRobot.getRobotPosition().changeRobotPosition(),
-                    simulation, toyRobot);
+            return new LeftCommand().sendCommand(toyRobot);
         }
 
         if (command == Command.RIGHT) {
-            return new RightCommand().sendCommand(
-                    toyRobot.getRobotPosition().changeRobotPosition(),
-                    simulation, toyRobot);
+            return new RightCommand().sendCommand( toyRobot);
         }
 
         if (command == Command.REPORT) {
-            return new ReportCommand().sendCommand(
-                    toyRobot.getRobotPosition().changeRobotPosition(),
-                    simulation, toyRobot);
+            return new ReportCommand().sendCommand(toyRobot);
         }
 
         return null;

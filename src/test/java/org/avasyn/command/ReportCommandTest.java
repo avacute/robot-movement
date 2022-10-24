@@ -18,11 +18,11 @@ public class ReportCommandTest {
         Robot toyRobot = new ToyRobot(toyRobotPosition);
 
         ReportCommand reportCommand = new ReportCommand();
-        assertEquals(  "0,0,NORTH",reportCommand.sendCommand(null,null,toyRobot));
+        assertEquals(  "0,0,NORTH",reportCommand.sendCommand(toyRobot));
 
 
         toyRobot.setRobotPosition(null);
-        assertNull(  null,reportCommand.sendCommand(null,null,toyRobot));
+        assertNull(  null,reportCommand.sendCommand(toyRobot));
     }
 
 }

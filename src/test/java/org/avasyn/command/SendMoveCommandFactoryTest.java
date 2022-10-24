@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SendCommandFactoryTest {
+public class SendMoveCommandFactoryTest {
 
     @Test
     public void testSendPlaceCommand() throws Exception{
@@ -22,7 +22,7 @@ public class SendCommandFactoryTest {
         Simulation simulation = new Simulation(squareTable, toyRobot);
         SendCommandFactory sendCommandFactory = new SendCommandFactory();
         assertEquals("Robot placed on Table",sendCommandFactory.executeCommand(
-                Command.PLACE,0,0,CardinalDirection.NORTH,toyRobot,simulation
+                Command.PLACE,0,0,CardinalDirection.NORTH,toyRobot,simulation,squareTable
         ));
     }
 
@@ -36,7 +36,7 @@ public class SendCommandFactoryTest {
         Simulation simulation = new Simulation(squareTable, toyRobot);
         SendCommandFactory sendCommandFactory = new SendCommandFactory();
         assertEquals("Robot move towards NORTH",sendCommandFactory.executeCommand(
-                Command.MOVE,0,0,CardinalDirection.NORTH,toyRobot,simulation
+                Command.MOVE,0,0,CardinalDirection.NORTH,toyRobot,simulation,squareTable
         ));
     }
 
@@ -49,7 +49,7 @@ public class SendCommandFactoryTest {
         Simulation simulation = new Simulation(squareTable, toyRobot);
         SendCommandFactory sendCommandFactory = new SendCommandFactory();
         assertEquals("Robot turned Left: WEST",sendCommandFactory.executeCommand(
-                Command.LEFT,0,0,CardinalDirection.NORTH,toyRobot,simulation
+                Command.LEFT,0,0,CardinalDirection.NORTH,toyRobot,simulation,squareTable
         ));
     }
 
@@ -62,7 +62,7 @@ public class SendCommandFactoryTest {
         Simulation simulation = new Simulation(squareTable, toyRobot);
         SendCommandFactory sendCommandFactory = new SendCommandFactory();
         assertEquals("Robot turned Right: EAST",sendCommandFactory.executeCommand(
-                Command.RIGHT,0,0,CardinalDirection.NORTH,toyRobot,simulation
+                Command.RIGHT,0,0,CardinalDirection.NORTH,toyRobot,simulation,squareTable
         ));
     }
 
@@ -74,7 +74,7 @@ public class SendCommandFactoryTest {
         Simulation simulation = new Simulation(squareTable, toyRobot);
         SendCommandFactory sendCommandFactory = new SendCommandFactory();
         assertEquals("0,0,NORTH",sendCommandFactory.executeCommand(
-                Command.REPORT,0,0,CardinalDirection.NORTH,toyRobot,simulation
+                Command.REPORT,0,0,CardinalDirection.NORTH,toyRobot,simulation,squareTable
         ));
     }
 

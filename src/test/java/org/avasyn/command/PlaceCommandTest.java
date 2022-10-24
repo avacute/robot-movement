@@ -17,14 +17,26 @@ public class PlaceCommandTest {
 
 
     @Test
-    public void testPlaceCommandWIthNullRobotPosition() {
+    public void testPlaceCommandInvalidSquareBoard() {
 
         RobotPosition toyRobotPosition = new ToyRobotPosition(0, 0, CardinalDirection.NORTH);
         Robot toyRobot = new ToyRobot(toyRobotPosition);
         Simulation simulation = new Simulation(null, toyRobot);
         PlaceCommand placeCommand= new PlaceCommand();
         assertThrows(RobotMovementException.class, () -> {
-            placeCommand.sendCommand(toyRobotPosition,simulation,toyRobot);
+            placeCommand.sendCommand(null,toyRobotPosition,simulation);
+        }, "Invalid squareBoard object");
+    }
+    @Test
+    public void testPlaceCommandWIthNullRobotPosition() {
+
+        RobotPosition toyRobotPosition = new ToyRobotPosition(0, 0, CardinalDirection.NORTH);
+        Robot toyRobot = new ToyRobot(toyRobotPosition);
+        Table squareTable = new SquareTable(5, 5);
+        Simulation simulation = new Simulation(squareTable, toyRobot);
+        PlaceCommand placeCommand= new PlaceCommand();
+        assertThrows(RobotMovementException.class, () -> {
+            placeCommand.sendCommand(squareTable,null,simulation);
         }, "Invalid position object");
     }
 
@@ -38,7 +50,7 @@ public class PlaceCommandTest {
 
         PlaceCommand placeCommand= new PlaceCommand();
         assertThrows(RobotMovementException.class, () -> {
-            placeCommand.sendCommand(toyRobotPosition,simulation,toyRobot);
+            placeCommand.sendCommand(squareTable,toyRobotPosition,simulation);
         }, "Invalid direction value");
 
     }
@@ -53,7 +65,7 @@ public class PlaceCommandTest {
 
         PlaceCommand placeCommand= new PlaceCommand();
 
-        assertEquals("Invalid position",placeCommand.sendCommand(toyRobotPosition,simulation,toyRobot));
+        assertEquals("Invalid position",placeCommand.sendCommand(squareTable,toyRobotPosition,simulation));
     }
 
 
@@ -67,7 +79,7 @@ public class PlaceCommandTest {
 
         PlaceCommand placeCommand= new PlaceCommand();
 
-        assertEquals("Robot placed on Table",placeCommand.sendCommand(toyRobotPosition,simulation,toyRobot));
+        assertEquals("Robot placed on Table",placeCommand.sendCommand(squareTable,toyRobotPosition,simulation));
 
     }
 }

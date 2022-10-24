@@ -23,7 +23,7 @@ public class Simulation {
         this.toyRobot = toyRobot;
     }
 
-    public String placeRobotTable(RobotPosition toyRobotPosition) throws RobotMovementException {
+    public String placeRobotTable(RobotPosition toyRobotPosition,Table squareTable) throws RobotMovementException {
 
         if (squareTable == null)
             throw new RobotMovementException("Invalid squareBoard object");
@@ -81,7 +81,8 @@ public class Simulation {
         // create sendCommandFactory object
         SendCommandFactory sendCommandFactory = new SendCommandFactory();
         // execute command
-        return sendCommandFactory.executeCommand(command, x, y, cardinalDirection,toyRobot,this);
+        return sendCommandFactory.executeCommand(command, x, y, cardinalDirection,toyRobot,
+                this, squareTable);
 
 
     }
