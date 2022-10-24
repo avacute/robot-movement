@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public class RobotMovement {
 
-    private static final Logger LOGGER = Logger.getLogger("Start project");
+    private static final Logger LOGGER = Logger.getLogger("Robot Movement project");
     public static void main(String[] args )
     {
         RobotMovement toyRobotMovement = new RobotMovement();
