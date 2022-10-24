@@ -6,9 +6,11 @@ import org.avasyn.simulation.SquareTable;
 import org.avasyn.simulation.ToyRobot;
 import org.avasyn.simulation.contract.Table;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 public class RobotMovement {
 
+    private static final Logger LOGGER = Logger.getLogger("Start project");
     public static void main(String[] args )
     {
         RobotMovement toyRobotMovement = new RobotMovement();
@@ -17,8 +19,9 @@ public class RobotMovement {
 
     private void startRobot() {
         //output usage instruction to console
-        System.out.println("Enter command in the format Below");
-        System.out.println("'PLACE X,Y,[NORTH|SOUTH|EAST|WEST]', EXIT, MOVE, RIGHT, LEFT or REPORT");
+        LOGGER.info("Enter command in the format Below");
+        LOGGER.info("'PLACE X,Y,[NORTH|SOUTH|EAST|WEST]', EXIT, MOVE, RIGHT, LEFT or REPORT");
+
 
         // create objects
         Scanner inputPane = new Scanner(System.in);
@@ -34,9 +37,9 @@ public class RobotMovement {
             else {
                 try {
                     String outputVal = simulation.robotMovement(inputString);
-                    System.out.println(outputVal);
+                    LOGGER.info(outputVal);
                 } catch (RobotMovementException e) {
-                    System.out.println(e.getMessage());
+                    LOGGER.warning(e.getMessage());
                 }
             }
         }
