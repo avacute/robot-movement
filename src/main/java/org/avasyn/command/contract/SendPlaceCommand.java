@@ -7,5 +7,5 @@ import org.avasyn.simulation.contract.Table;
 
 public interface SendPlaceCommand {
 
-    public String sendCommand(Table squareTable, RobotPosition toyRobotPosition, Simulation Simulation) throws RobotMovementException;
+    public String sendCommand(Table squareTable, RobotPosition toyRobotPosition, Simulation simulation) throws RobotMovementException;
 }
