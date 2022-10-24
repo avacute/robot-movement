@@ -16,7 +16,7 @@ public class RobotMovement {
     }
 
     private void startRobot() {
-        //output usage instruction to terminal
+        //output usage instruction to console
         System.out.println("Enter command");
         System.out.println("Format::. 'PLACE X,Y,[NORTH|SOUTH|EAST|WEST]', EXIT, MOVE, RIGHT, LEFT or REPORT");
 
